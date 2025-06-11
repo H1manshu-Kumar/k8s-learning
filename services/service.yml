@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: nginx-svc
+  namespace: nginx-ns
+
+spec:
+  selector:
+    app: nginx
+  
+  ports:
+    - protocol: TCP
+      port: 82 #cluster/host port [service]
+      targetPort: 80 #container port
+
+

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-deployment
+  namespace: online-shop
+  labels:
+    app: webserver
+    name: webserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache
+      name: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+        name: apache
+    spec:
+      containers:
+      - name: apache
+        image: fedora/apache
+        ports:
+        - containerPort: 80
