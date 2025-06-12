@@ -1,16 +1,25 @@
+# Defines the type of resource - in this case, a Kind cluster
 kind: Cluster
+
+# Specifies the API version used by Kind for the cluster configuration
 apiVersion: kind.x-k8s.io/v1alpha4
 
+# List of nodes that will be part of the Kubernetes cluster
 nodes:
-- role: control-plane
-  image: kindest/node:v1.32.5
+  # Defines the control plane node (master node)
+  - role: control-plane
+    # Specifies the container image to use for the control plane node
+    image: kindest/node:v1.32.5
 
-- role: worker
-  image: kindest/node:v1.32.5
+  # First worker node in the cluster
+  - role: worker
+    # Specifies the container image to use for this worker node
+    image: kindest/node:v1.32.5
 
-- role: worker
-  image: kindest/node:v1.32.5
+  # Second worker node in the cluster
+  - role: worker
+    image: kindest/node:v1.32.5
 
-- role: worker
-  image: kindest/node:v1.32.5
-
+  # Third worker node in the cluster
+  - role: worker
+    image: kindest/node:v1.32.5
