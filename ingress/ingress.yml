@@ -1,29 +1,45 @@
+# API version for the Ingress resource
 apiVersion: networking.k8s.io/v1
+
+# Declares that this object is of kind Ingress
 kind: Ingress
 
 metadata:
+  # Name of the Ingress resource
   name: online-shop-ingress
+
+  # Namespace where the Ingress resource is created
   namespace: online-shop
+
+  # Annotations provide configuration for the ingress controller
   annotations:
+    # Specifies the Ingress controller to use (here, nginx)
     kubernetes.io/ingress.class: "nginx"
+
+    # Adds the base URL to the request if it's missing
     nginx.ingress.kubernetes.io/add-base-url: "true"
+
+    # Rewrites the incoming request path to the root (/) before forwarding
     nginx.ingress.kubernetes.io/rewrite-target: /
 
 spec:
   rules:
   - http:
       paths:
-      - path: /shop
-        pathType: Prefix        
-        backend:
-          service:
-            name: online-shop-svc
-            port:
-              number: 5173
-      - path: /apache
-        pathType: Prefix
-        backend:
-          service:
-            name: apache-service
-            port: 
-              number: 80
+        # Route requests starting with /shop to the online-shop-svc service
+        - path: /shop
+          pathType: Prefix        # Prefix means any request that starts with /shop will match
+          backend:
+            service:
+              name: online-shop-svc  # Target service name
+              port:
+                number: 5173         # Port on which the service is exposed
+
+        # Route requests starting with /apache to the apache-service
+        - path: /apache
+          pathType: Prefix        # Prefix match for /apache path
+          backend:
+            service:
+              name: apache-service  # Target service name
+              port: 
+                number: 80           # Port on which the service is exposed
