@@ -1,28 +1,46 @@
+# Specifies the API version of Kubernetes used to create this object
 apiVersion: apps/v1
+
+# Declares the type of Kubernetes object; here it's a Deployment
 kind: Deployment
+
 metadata:
+  # Name assigned to the Deployment
   name: nginx-deployment
+
+  # Namespace in which the Deployment will reside
   namespace: nginx-ns
+
+  # Labels used to identify the Deployment object
   labels:
     app: nginx
 
 spec:
+  # Number of pod replicas to run. 0 means no pods will be started.
   replicas: 0
+
+  # Defines how the Deployment finds which Pods to manage
   selector:
     matchLabels:
-      app: nginx
+      app: nginx  # This must match the pod template's labels
 
+  # Template for the pods that will be created by this Deployment
   template:
     metadata:
+      # Name of the pod (optional in most use cases)
       name: nginx-pod
+
+      # Namespace in which the pod should be created (typically inherited from Deployment)
       namespace: nginx-ns
+
+      # Labels assigned to pods created by this template
       labels: 
         app: nginx
 
     spec:
+      # Definition of containers to run in the pod
       containers:
-        - name: nginx
-          image: nginx:1.14.2
+        - name: nginx                    # Name of the container
+          image: nginx:1.14.2           # Docker image to be used for the container
           ports:
-            - containerPort: 80  
-
+            - containerPort: 80         # Port on which the container listens (HTTP default)
