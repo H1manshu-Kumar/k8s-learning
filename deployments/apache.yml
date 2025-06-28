@@ -1,25 +1,43 @@
+# API version used for the Deployment resource
 apiVersion: apps/v1
+
+# This declares the kind of Kubernetes object being created, which is a Deployment
 kind: Deployment
+
 metadata:
+  # Name of the Deployment
   name: apache-deployment
+
+  # Namespace in which the Deployment will be created
   namespace: online-shop
+
+  # Labels for identifying and organizing the Deployment
   labels:
     app: webserver
     name: webserver
+
 spec:
+  # Number of desired pod replicas
   replicas: 1
+
+  # Selector to match the Pods managed by this Deployment
   selector:
     matchLabels:
       app: apache
       name: apache
+
+  # Pod template that defines how the pods should be created
   template:
     metadata:
+      # Labels must match the selector above for proper association
       labels:
         app: apache
         name: apache
+
     spec:
+      # List of containers in the pod
       containers:
-      - name: apache
-        image: fedora/apache
+      - name: apache                    # Name of the container
+        image: fedora/apache            # Docker image to use for this container
         ports:
-        - containerPort: 80
+        - containerPort: 80             # Container port to expose (typically for HTTP traffic)
