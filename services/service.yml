@@ -1,17 +1,15 @@
-apiVersion: v1
-kind: Service
+apiVersion: v1  # API version used for the Service resource
+kind: Service  # Declares this resource as a Service
 
 metadata:
-  name: nginx-svc
-  namespace: nginx-ns
+  name: nginx-svc  # Name of the Service
+  namespace: nginx-ns  # Namespace in which the Service is created
 
 spec:
   selector:
-    app: nginx
+    app: nginx  # This Service will target Pods with label 'app: nginx'
   
   ports:
-    - protocol: TCP
-      port: 82 #cluster/host port [service]
-      targetPort: 80 #container port
-
-
+    - protocol: TCP  # Communication protocol (TCP)
+      port: 82  # Port exposed by the Service inside the cluster
+      targetPort: 80  # Port on the Pod (container) where the traffic will be directed
