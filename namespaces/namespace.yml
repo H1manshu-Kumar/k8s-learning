@@ -1,7 +1,9 @@
+# Specifies the type of Kubernetes object being created. In this case, it's a Namespace.
 kind: Namespace
+
+# Specifies the API version used to create this resource. "v1" is the core API group version.
 apiVersion: v1
 
 metadata:
+  # The name of the namespace being created. This will be used to logically group Kubernetes resources.
   name: nginx-ns
-
-
