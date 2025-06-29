@@ -1,13 +1,14 @@
-kind: Service
-apiVersion: v1
+kind: Service  # Defines the resource type as a Service
+apiVersion: v1  # Specifies the API version used to create the resource
+
 metadata:
-  name: apache-service
-  namespace: online-shop
+  name: apache-service  # Name of the Service
+  namespace: online-shop  # Namespace in which the Service is created
+
 spec:
   selector:
-    app: apache
+    app: apache  # Selects the Pods with label 'app: apache' to route traffic to
   ports:
-    - protocol: TCP
-      port: 80 #exposed port in the cluster
-      targetPort: 80 #container port
-
+    - protocol: TCP  # Protocol used by the service (TCP in this case)
+      port: 80  # Port exposed by the service within the cluster
+      targetPort: 80  # Port on the container where traffic will be directed
