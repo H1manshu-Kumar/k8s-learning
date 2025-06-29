@@ -1,14 +1,20 @@
+# API version used to create the Pod. "v1" is the core version for basic Kubernetes objects.
 apiVersion: v1
+
+# Specifies that the object being created is a Pod.
 kind: Pod
 
 metadata:
+  # The name assigned to this Pod.
   name: nginx-pod
+  
+  # The namespace in which this Pod will be created. It must exist beforehand.
   namespace: nginx-ns
 
 spec:
+  # The list of containers that will run inside the Pod.
   containers:
-  - name: nginx
-    image: nginx:latest
+  - name: nginx  # Name of the container
+    image: nginx:latest  # Docker image to use for the container. Pulls the latest version of the nginx image.
     ports:
-    - containerPort: 80
-
+    - containerPort: 80  # Exposes port 80 inside the container, typically used for HTTP traffic
