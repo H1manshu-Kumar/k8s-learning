@@ -7,9 +7,9 @@ metadata:
 
 spec:
   selector:
-    app: nginx  # This Service will target Pods with label 'app: nginx'
+    app: nginx  # This Service will route traffic to Pods labeled with 'app: nginx'
   
   ports:
-    - protocol: TCP  # Communication protocol (TCP)
-      port: 82  # Port exposed by the Service inside the cluster
-      targetPort: 80  # Port on the Pod (container) where the traffic will be directed
+    - protocol: TCP      # Protocol used for communication (TCP in this case)
+      port: 82           # Port on which the Service will be exposed inside the cluster
+      targetPort: 80     # Port on the Pod/container that will receive the traffic
